@@ -6,8 +6,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -42,4 +44,8 @@ public class User {
     public void addRole(Role role){
         this.roles.add(role);
     }
+
+    // RELACJA 1:N
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    private List<Post> posts = new ArrayList<>();
 }
