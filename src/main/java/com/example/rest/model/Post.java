@@ -32,4 +32,15 @@ public class Post {
         this.content = content;
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", category=" + category +
+                ", added_date=" + added_date +
+                '}';
+    }
 }

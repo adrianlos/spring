@@ -46,13 +46,22 @@ public class User {
     }
 
     // RELACJA 1:N
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Post> posts = new ArrayList<>();
 
     public void addPost(Post post){
         this.posts.add(post);
     }
 
-
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", registration_date=" + registration_date +
+                ", active=" + active +
+                ", roles=" + roles +
+                '}';
+    }
 }
