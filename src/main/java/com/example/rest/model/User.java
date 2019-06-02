@@ -20,6 +20,11 @@ public class User {
     private LocalDateTime registration_date = LocalDateTime.now();
     private boolean active = false;
 
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
     // RELACJA N:M
     @ManyToMany(
             cascade = CascadeType.ALL,                          // pełna rekursywność
