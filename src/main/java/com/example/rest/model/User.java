@@ -48,4 +48,11 @@ public class User {
     // RELACJA 1:N
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     private List<Post> posts = new ArrayList<>();
+
+    public void addPost(Post post){
+        this.posts.add(post);
+    }
+
+
+
 }

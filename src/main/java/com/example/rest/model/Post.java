@@ -27,4 +27,9 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public Post(String title, String content, CategoryEnum category) {
+        this.title = title;
+        this.content = content;
+        this.category = category;
+    }
 }
