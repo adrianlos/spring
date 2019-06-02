@@ -21,4 +21,7 @@ public class UserService {
         // zapis do bazy danych
         userRepository.save(user);
     }
+    public User loginUser(String login, String password){
+        return userRepository.findFirstByLoginAndPassword(login,password);
+    }
 }

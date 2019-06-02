@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository                                   //<tabelka,typ klucza>
 public interface UserRepository extends JpaRepository<User,Long> {
+    // SEELCT * FROM user WHERE login = ? AND password = ?;
+    User findFirstByLoginAndPassword(String login, String password);
+
 }
