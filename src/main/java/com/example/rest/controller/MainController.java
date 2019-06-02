@@ -21,9 +21,10 @@ public class MainController {
     public List<String> getLogins(){
         return logins;
     }
-    @GetMapping("/addUser")
-    public User addUser(){
-        return new User("mk","mk", LocalDateTime.now(),true);
+    @PostMapping("/addUser")
+    public User addUser(String login, String password){
+        return new User(login ,password, LocalDateTime.now(),true);
     }
+
 
 }
