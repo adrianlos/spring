@@ -52,16 +52,4 @@ public class User {
     public void addPost(Post post){
         this.posts.add(post);
     }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", registration_date=" + registration_date +
-                ", active=" + active +
-                ", roles=" + roles +
-                '}';
-    }
 }

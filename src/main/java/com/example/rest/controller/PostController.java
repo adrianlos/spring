@@ -27,7 +27,7 @@ public class PostController {
         postService.addPost(title, content, category, user_id);
     }
     @GetMapping("/allPosts")
-    public List<Post> getAllPosts(){
-        return postService.getAllPosts();
+    public String getAllPosts(){
+        return String.valueOf(postService.getAllPosts());
     }
 }
