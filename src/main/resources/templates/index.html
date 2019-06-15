@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th=”http://www.thymeleaf.org”>
+
+<head>
+</head>
+
+<body>
+
+<div th:each="post : ${posts}">
+    <h2 th:text="${post.getTitle()}">
+        title
+    </h2>
+
+    <p th:text="${'Posted by ' + post.getUser().getLogin()}"> author </p>
+    <p th:text="${'Content ' + post.getContent()}"> content </p>
+    <p th:text="${'Publication date ' + post.getAdded_date()}"> date </p>
+</div>
+
+</body>
+
+</html>

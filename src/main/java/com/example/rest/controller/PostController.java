@@ -5,6 +5,7 @@ import com.example.rest.model.Post;
 import com.example.rest.model.enums.CategoryEnum;
 import com.example.rest.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +13,21 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
+@Controller
 public class PostController {
     PostService postService;
     @Autowired
     public PostController(PostService postService) {
         this.postService = postService;
+    }
+
+    @GetMapping("/")
+    public String getAllPosts(Model model) {
+
+        List<Post> posts = postService.getAllPosts();
+        model.addAttribute("posts", posts);
+
+        return "index";
     }
 
     @PostMapping("/addPost/{user_id}")
