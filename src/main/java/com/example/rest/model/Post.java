@@ -52,4 +52,8 @@ public class Post {
                 ", comments=" + comments +
                 '}';
     }
+
+    public void removeComment(Comment comment) {
+        comments.remove(comment);
+    }
 }

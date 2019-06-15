@@ -1,5 +1,6 @@
 package com.example.rest.controller;
 
+import com.example.rest.model.Comment;
 import com.example.rest.model.Post;
 import com.example.rest.model.enums.CategoryEnum;
 import com.example.rest.service.PostService;
@@ -40,5 +41,11 @@ public class PostController {
     @GetMapping("/allPosts")
     public String getAllPosts(){
         return String.valueOf(postService.getAllPosts());
+    }
+
+
+    @GetMapping("/deletecomment/{id}")
+    public void deleteComment(@PathVariable("id") Long id){
+        postService.deleteCommentById(id);
     }
 }
