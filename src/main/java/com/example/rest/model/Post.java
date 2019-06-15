@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -27,10 +28,17 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "post")
+    private List<Comment> comments;
+
     public Post(String title, String content, CategoryEnum category) {
         this.title = title;
         this.content = content;
         this.category = category;
+    }
+
+    public void addComment(Comment comment){
+        this.comments.add(comment);
     }
 
     @Override
@@ -41,6 +49,7 @@ public class Post {
                 ", content='" + content + '\'' +
                 ", category=" + category +
                 ", added_date=" + added_date +
+                ", comments=" + comments +
                 '}';
     }
 }
