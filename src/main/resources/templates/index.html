@@ -22,6 +22,9 @@
         <p th:text="${'Content: ' + comment.getMessage()}"> content </p>
         <p th:text="${'Publication date ' + comment.getDate_added()}"> date </p>
 
+        <form th:action="@{/deletecomment/} + ${comment.getId()}" method="get">
+            <input type="submit" value="Delete">
+        </form>
     </div>
 </div>
 

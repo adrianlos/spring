@@ -54,8 +54,10 @@ public class PostController {
     }
 
     @GetMapping("/deletecomment/{id}")
-    public void deleteComment(@PathVariable("id") Long id){
+    public String deleteComment(@PathVariable("id") Long id){
         postService.deleteCommentById(id);
+
+        return "redirect:/";
     }
 
     @GetMapping("/deletepost/{id}")
