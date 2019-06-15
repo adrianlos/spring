@@ -43,9 +43,13 @@ public class PostController {
         return String.valueOf(postService.getAllPosts());
     }
 
-
     @GetMapping("/deletecomment/{id}")
     public void deleteComment(@PathVariable("id") Long id){
         postService.deleteCommentById(id);
+    }
+
+    @GetMapping("/deletepost/{id}")
+    public void deletePost(@PathVariable("id") Long id){
+        postService.deletePost(id);
     }
 }

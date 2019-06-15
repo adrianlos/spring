@@ -24,7 +24,7 @@ public class Post {
     private CategoryEnum category;
     private LocalDateTime added_date = LocalDateTime.now();
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -51,9 +51,5 @@ public class Post {
                 ", added_date=" + added_date +
                 ", comments=" + comments +
                 '}';
-    }
-
-    public void removeComment(Comment comment) {
-        comments.remove(comment);
     }
 }

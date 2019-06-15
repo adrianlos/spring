@@ -60,11 +60,10 @@ public class PostService {
     }
 
     public void deleteCommentById(Long id) {
-
-        Comment comment = commentRepository.getOne(id);
-        Post post = comment.getPost();
-
-        post.removeComment(comment);
         commentRepository.deleteById(id);
+    }
+
+    public void deletePost(Long id) {
+        postRepository.deleteById(id);
     }
 }
