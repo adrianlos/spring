@@ -90,10 +90,22 @@
                             <input th:field="*{title}" type="text" class="form-control" placeholder="Title">
                         </div>
                     </div>
+                    <div class="control-group">      <!--class="control-group"-->
+                        <div class="form-group floating-label-form-group controls">
+                            <!--<label>Category</label>-->
+                            <select th:field="*{category}">
+                                <option th:each="c : ${categories}"
+                                        th:value="${categories.get(c.ordinal())}"
+                                        th:text="${c.name()}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>Content</label>
-                            <textarea th:field="*{content}" rows="5" class="form-control" placeholder="Content" required data-validation-required-message="Please enter a content."></textarea>
+                            <textarea th:field="*{content}" rows="5" class="form-control" placeholder="Content" required
+                                      data-validation-required-message="Please enter a content."></textarea>
                         </div>
                     </div>
 

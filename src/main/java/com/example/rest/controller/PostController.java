@@ -14,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -40,6 +42,7 @@ public class PostController {
 
         model.addAttribute("auth", auth);
         model.addAttribute("post", new PostDto());
+        model.addAttribute("categories", Arrays.asList(CategoryEnum.values()));
 
         return "addPost";
     }

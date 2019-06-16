@@ -13,5 +13,5 @@ public class PostDto {
 
     private String content;
 
-    private CategoryEnum category = CategoryEnum.JAVA;
+    private CategoryEnum category;
 }
