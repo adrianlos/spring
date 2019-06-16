@@ -22,7 +22,7 @@ public class User {
     private String login;
     private String password;
     private LocalDateTime registration_date = LocalDateTime.now();
-    private boolean active = false;
+    private boolean active = true;
 
     public User(String login, String password) {
         this.login = login;

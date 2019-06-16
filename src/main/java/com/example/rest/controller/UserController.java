@@ -1,11 +1,18 @@
 package com.example.rest.controller;
 
+import com.example.rest.controller.dto.UserDto;
 import com.example.rest.model.User;
 import com.example.rest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+import javax.validation.Valid;
+
+@Controller
 public class UserController {
 
     // pole do wstrzykniecia
@@ -17,16 +24,20 @@ public class UserController {
         this.userService = userService;
     }
 
-    // rejestracja
-    @PostMapping("/registration")
-    public void registration(String login, String password){
-        userService.saveUser(login, password);
+    // wejście na stronę rejestracji
+    @GetMapping("/register")
+    public String register(Model model){
+        model.addAttribute("user", new UserDto());
+        return "registerForm";
     }
-    // potwierdzenie            //zmienna ścieżki URL
-    @PutMapping("/confirmation/{login}")    //zmienna pobrana z URL
-    public void confirmation(@PathVariable String login){
-        userService.confirmUser(login);
+
+    // obsługa wysłanego formularza
+    @PostMapping("/register")
+    public String register(@ModelAttribute("user") UserDto userDto){
+        userService.saveUser(userDto.getLogin(), userDto.getPassword());
+        return "redirect:/";
     }
+
 
     // logowanie
     @GetMapping("/login")

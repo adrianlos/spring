@@ -20,7 +20,7 @@ public class UserService {
     public void saveUser(String login, String password){
         User user = new User(login, password);
         // dodajemy rolę użytkownika
-        user.addRole(roleRepository.getOne(2L));
+        user.addRole(roleRepository.getOne(1L));
         // zapis do bazy danych
         System.out.println(user);
         userRepository.save(user);
