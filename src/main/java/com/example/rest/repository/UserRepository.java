@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository                                   //<tabelka,typ klucza>
 public interface UserRepository extends JpaRepository<User,Long> {
-    // SELECT * FROM user WHERE login = ? AND password = ?;
-    User findFirstByLoginAndPassword(String login, String password);
-    // SELECT * FROM user WHERE login = ?;
-    User findFirstByLogin(String login);
+    // SELECT * FROM user WHERE email = ? AND password = ?;
+    User findFirstByEmailAndPassword(String email, String password);
+    // SELECT * FROM user WHERE email = ?;
+    User findFirstByEmail(String login);
 
 }

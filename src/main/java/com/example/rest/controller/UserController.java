@@ -34,7 +34,7 @@ public class UserController {
     // obsługa wysłanego formularza
     @PostMapping("/register")
     public String register(@ModelAttribute("user") UserDto userDto){
-        userService.saveUser(userDto.getLogin(), userDto.getPassword());
+        userService.saveUser(userDto);
         return "redirect:/";
     }
 

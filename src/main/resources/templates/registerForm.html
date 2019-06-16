@@ -86,8 +86,20 @@
                 <form th:action="@{/register}" th:method="post" th:object="${user}">
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
-                            <label>Login</label>
-                            <input th:field="*{login}" type="text" class="form-control" placeholder="login">
+                            <label>Name</label>
+                            <input th:field="*{name}" type="text" class="form-control" placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Last name</label>
+                            <input th:field="*{lastName}" type="text" class="form-control" placeholder="Last name">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Email</label>
+                            <input th:field="*{email}" type="text" class="form-control" placeholder="Email">
                         </div>
                     </div>
                     <div class="control-group">

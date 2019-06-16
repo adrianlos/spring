@@ -19,15 +19,14 @@ public class User {
     @Id                                             // PRIMARY KEY
     @GeneratedValue(strategy = GenerationType.AUTO) // AUTO_INCREMENT
     private Long id;
-    private String login;
+
+    private String name;
+    private String lastName;
+    private String email;
     private String password;
+
     private LocalDateTime registration_date = LocalDateTime.now();
     private boolean active = true;
-
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
 
     // RELACJA N:M
     @ManyToMany(
@@ -41,8 +40,11 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
-    public void addRole(Role role){
-        this.roles.add(role);
+    public User(String name, String lastName, String email, String password) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
     }
 
     // RELACJA 1:N
@@ -51,5 +53,8 @@ public class User {
 
     public void addPost(Post post){
         this.posts.add(post);
+    }
+    public void addRole(Role role){
+        this.roles.add(role);
     }
 }
