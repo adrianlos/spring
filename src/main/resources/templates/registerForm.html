@@ -88,6 +88,7 @@
                         <div class="form-group floating-label-form-group controls">
                             <label>Name</label>
                             <input th:field="*{name}" type="text" class="form-control" placeholder="Name">
+                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">error-message</span>
                         </div>
                     </div>
                     <div class="control-group">

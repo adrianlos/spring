@@ -5,6 +5,7 @@ import com.example.rest.model.User;
 import com.example.rest.repository.RoleRepository;
 import com.example.rest.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,11 +20,13 @@ public class UserService {
     }
 
     public void saveUser(UserDto userDto) {
-        User user =
-                new User(userDto.getName(),
+
+        String encodedPassword = new BCryptPasswordEncoder().encode(userDto.getPassword());
+
+        User user = new User(userDto.getName(),
                 userDto.getLastName(),
                 userDto.getEmail(),
-                userDto.getPassword());
+                encodedPassword);
 
         // dodajemy rolę użytkownika
         user.addRole(roleRepository.getOne(1L));

@@ -33,11 +33,22 @@ public class UserController {
 
     // obsługa wysłanego formularza
     @PostMapping("/register")
-    public String register(@ModelAttribute("user") UserDto userDto){
+    public String register(@ModelAttribute("user") @Valid UserDto userDto,
+                           BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return "registerForm";
+        }
+
         userService.saveUser(userDto);
         return "redirect:/";
     }
 
+//    // wejście na stronę logowania
+//    @GetMapping("/login")
+//    public String login(Model model){
+//        return "loginForm";
+//    }
 
     // logowanie
     @GetMapping("/login")
