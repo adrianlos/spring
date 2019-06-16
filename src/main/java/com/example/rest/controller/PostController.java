@@ -5,6 +5,7 @@ import com.example.rest.model.Post;
 import com.example.rest.model.enums.CategoryEnum;
 import com.example.rest.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +23,9 @@ public class PostController {
     }
 
     @GetMapping("/")
-    public String getAllPosts(Model model) {
+    public String getAllPosts(Model model, Authentication auth) {
+
+        model.addAttribute("auth", auth);
 
         List<Post> posts = postService.getAllPosts();
         model.addAttribute("posts", posts);
@@ -37,6 +40,11 @@ public class PostController {
             CategoryEnum category,
             @PathVariable Long user_id){
         postService.addPost(title, content, category, user_id);
+    }
+
+    @GetMapping("/addpost")
+    public String addPost(){
+        return "registerForm";
     }
 
     @PostMapping("/addcomment/{id}")

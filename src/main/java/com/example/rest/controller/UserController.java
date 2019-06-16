@@ -44,32 +44,16 @@ public class UserController {
         return "redirect:/";
     }
 
-//    // wejście na stronę logowania
-//    @GetMapping("/login")
-//    public String login(Model model){
-//        return "loginForm";
-//    }
-
-    // logowanie
+    // wejście na stronę logowania
     @GetMapping("/login")
-    public String login(String login, String password){
-        User loggedUser = userService.loginUser(login,password);
-        if(loggedUser != null){
-            if(loggedUser.isActive()) {
-                return "zalogowano";
-            }
-            return "konto jest nieaktywne";
-        }
-        return "błąd logowania";
+    public String login(Model model){
+        return "loginForm";
     }
+
     // dodawanie administratora
     @PutMapping("/addAdmin/{id}")
     public void addAdmin(@PathVariable Long id){
         userService.addAdmin(id);
     }
-
-
-
-
 
 }

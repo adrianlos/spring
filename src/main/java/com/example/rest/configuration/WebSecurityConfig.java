@@ -24,9 +24,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 // tutaj są URL wymagające autoryzacji - strefa chroniona
                 // .antMatchers(/url) -> wymaga autoryzacji
-                // .hasAnyAuthority("uprawnienie") -> dla określonego uprawnienia
-//                .antMatchers("/deletepost/**")
-//                .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+//                 .hasAnyAuthority("uprawnienie") -> dla określonego uprawnienia
+                .antMatchers("/deletepost/**")
+                .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .antMatchers("/addpost")
                 .hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .antMatchers("/updatepost/**")
@@ -64,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // SQL dla logowania użytkownika po adresie email i haśle
                 .usersByUsernameQuery("SELECT u.email, u.password, u.active FROM user u WHERE u.email = ?")
                 // SQL dla przypisania uprawnień dla zalogowanego użytkownika
-                .authoritiesByUsernameQuery("SELECT u.email, r.role FROM user u JOIN user_role ur ON ur.user_id = u.id JOIN role r ON ur.role_id = r.id WHERE u.email = ?")
+                .authoritiesByUsernameQuery("SELECT u.email, r.role_name FROM user u JOIN user_role ur ON ur.user_id = u.id JOIN role r ON ur.role_id = r.id WHERE u.email = ?")
                 // wynik logowania
                 .dataSource(dataSource)
                 // szyfrowanie hasła
