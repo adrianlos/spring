@@ -88,6 +88,7 @@
                         <div class="form-group floating-label-form-group controls">
                             <label>Title</label>
                             <input th:field="*{title}" type="text" class="form-control" placeholder="Title">
+                            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger">error-message</span>
                         </div>
                     </div>
                     <div class="control-group">      <!--class="control-group"-->
@@ -96,7 +97,7 @@
                             <select th:field="*{category}">
                                 <option th:each="c : ${categories}"
                                         th:value="${categories.get(c.ordinal())}"
-                                        th:text="${c.name()}">
+                                        th:text="${c.name()}">`
                                 </option>
                             </select>
                         </div>
@@ -104,8 +105,9 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>Content</label>
-                            <textarea th:field="*{content}" rows="5" class="form-control" placeholder="Content" required
+                            <textarea th:field="*{content}" rows="5" class="form-control" placeholder="Content"
                                       data-validation-required-message="Please enter a content."></textarea>
+                            <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-danger">error-message</span>
                         </div>
                     </div>
 

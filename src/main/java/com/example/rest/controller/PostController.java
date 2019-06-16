@@ -48,8 +48,18 @@ public class PostController {
     }
 
     @PostMapping("/addpost")
-    public String addPost(@ModelAttribute("post") PostDto postDto,
-                          Authentication auth){
+    public String addPost(@ModelAttribute("post") @Valid PostDto postDto,
+                          BindingResult bindingResult,
+                          Authentication auth,
+                          Model model){
+
+        if(bindingResult.hasErrors()){
+
+            model.addAttribute("auth", auth);
+            model.addAttribute("categories", Arrays.asList(CategoryEnum.values()));
+
+            return "addPost";
+        }
 
         String email = ((UserDetails)auth.getPrincipal()).getUsername();
 
