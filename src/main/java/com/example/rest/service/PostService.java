@@ -1,5 +1,6 @@
 package com.example.rest.service;
 
+import com.example.rest.controller.dto.PostDto;
 import com.example.rest.model.Comment;
 import com.example.rest.model.Post;
 import com.example.rest.model.User;
@@ -29,23 +30,28 @@ public class PostService {
         this.commentRepository = commentRepository;
     }
 
-    public void addPost(
-            String title, String content, CategoryEnum category, Long user_id){
-        Post post = new Post(title,content,category);
-        User user = userRepository.getOne(user_id);
+    public void addPost(PostDto postDto, String email) {
+
+        Post post = new Post(postDto.getTitle(),
+                postDto.getContent(), postDto.getCategory());
+
+        User user = userRepository.findFirstByEmail(email);
         post.setUser(user);
         user.addPost(post);
+
         postRepository.save(post);
     }
-    public List<Post> getAllPosts(){
+
+    public List<Post> getAllPosts() {
         return postRepository.findAll();
     }
-    public List<Post> getAllPostsByCategory(CategoryEnum category){
+
+    public List<Post> getAllPostsByCategory(CategoryEnum category) {
         return postRepository.findAllByCategory(category);
     }
 
 
-    public Comment addCommentToPost(Long id_post, String author, String message){
+    public Comment addCommentToPost(Long id_post, String author, String message) {
         // wyszukaj post po id
         Post post = postRepository.getOne(id_post);
         // dodaj komentarz do posta

@@ -1,11 +1,13 @@
 package com.example.rest.controller;
 
+import com.example.rest.controller.dto.PostDto;
 import com.example.rest.model.Comment;
 import com.example.rest.model.Post;
 import com.example.rest.model.enums.CategoryEnum;
 import com.example.rest.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,18 +35,23 @@ public class PostController {
         return "index";
     }
 
-    @PostMapping("/addPost/{user_id}")
-    public void addPost(
-            String title,
-            String content,
-            CategoryEnum category,
-            @PathVariable Long user_id){
-        postService.addPost(title, content, category, user_id);
+    @GetMapping("/addpost")
+    public String addPost(Model model, Authentication auth){
+
+        model.addAttribute("auth", auth);
+        model.addAttribute("post", new PostDto());
+
+        return "addPost";
     }
 
-    @GetMapping("/addpost")
-    public String addPost(){
-        return "registerForm";
+    @PostMapping("/addpost")
+    public String addPost(@ModelAttribute("post") PostDto postDto,
+                          Authentication auth){
+
+        String email = ((UserDetails)auth.getPrincipal()).getUsername();
+
+        postService.addPost(postDto, email);
+        return "redirect:/";
     }
 
     @PostMapping("/addcomment/{id}")

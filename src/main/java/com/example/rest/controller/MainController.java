@@ -1,6 +1,9 @@
 package com.example.rest.controller;
 
 import com.example.rest.model.User;
+import com.example.rest.repository.UserRepository;
+import com.example.rest.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -10,6 +13,9 @@ import java.util.*;
 @RequestMapping("/rest")
 public class MainController {
 
+    @Autowired
+    private UserRepository userRepository;
+
     private List<String> logins = new ArrayList<>(Arrays.asList("mk","kk","ee","rr"));
     private User user;
 
@@ -17,23 +23,9 @@ public class MainController {
     public String hello(){
         return "HELLO WORLD";
     }
-    @GetMapping("/logins")
-    public List<String> getLogins(){
-        return logins;
-    }
-//    @PostMapping("/addUser")
-//    public User addUser(String login, String password){
-//        user = new User(login ,password, LocalDateTime.now(),false);
-//        return user;
-//    }
-    @PutMapping("/confirmRegistration")
-    public void confirmRegistration(){
-        user.setActive(true);
-    }
-    @GetMapping("/getUser")
-    public User getUser(){
-        return user;
-    }
 
-
+    @GetMapping("/users")
+    public List<User> users(){
+        return userRepository.findAll();
+    }
 }
